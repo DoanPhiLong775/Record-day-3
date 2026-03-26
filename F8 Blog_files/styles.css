@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+a{
+    color: #14485b;
+}
+.header{
+    height: 102px;
+    background-color: #cacaca;
+}
+.inner{
+    display: flex;
+}
+.logo-link{
+    margin-right: auto;
+}
+.logo {
+    height: 70px;
+}

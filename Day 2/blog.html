@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-twilight.css">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+
+</head>
+<body>
+    <h1>Hướng dẫn xây dựng ứng dụng Todo List với HTML, CSS và JavaScript</h1>
+    <h2>Bước 1: Tạo cấu trúc HTML cơ bản</h2>
+        <p>Trước hết, chúng ta cần tạo một khung HTML để hiển thị ứng dụng Todo List. Nó sẽ bao gồm một input để nhập công việc mới, một nút thêm, và một danh sách hiển thị các công việc.
+</p>
+    <pre><code class="language-html">!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+        &lt;title&gt;Todo List&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &lt;h1&gt;Todo List&lt;/h1&gt;
+        &lt;input type="text" id="todo-input" placeholder="Nhập công việc" /&gt;
+        &lt;button id="add-btn"&gt;Thêm&lt;/button&gt;
+        &lt;ul id="todo-list"&gt;&lt;/ul&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </code></pre>
+    <p>Giải thích: Chúng ta có một input với id <code>todo-input</code> để người dùng nhập công việc, một nút <code>add-btn</code> để thêm công việc, và một danh sách <code>ul</code> với id <code>todo-list</code> để hiển thị các công việc.</p>
+
+    <h2>Bước 2: Thêm CSS cơ bản để tạo giao diện</h2>
+        <p>Để ứng dụng trông dễ nhìn hơn, chúng ta sẽ thêm CSS đơn giản.</p>
+    <pre><code class="language-css">style&gt;
+    body {
+        font-family: Arial, sans-serif;
+        width: 400px;
+        margin: 50px auto;
+    }
+    input {
+        width: 70%;
+        padding: 10px;
+    }
+    </code></pre>
+    <h1>Hướng dẫn xây dựng ứng dụng Todo List (HTML, CSS, JavaScript)</h1>
+    <p>
+      Trong bài viết này, chúng ta sẽ
+      <strong>xây dựng một ứng dụng Todo List đơn giản</strong>
+      với các chức năng cơ bản:
+    </p>
+    <ul>
+      <li>Thêm công việc mới</li>
+      <li>Hiển thị danh sách công việc</li>
+      <li>Xóa công việc</li>
+    </ul>
+    <p>
+      Ứng dụng sử dụng
+      <strong>HTML để tạo cấu trúc, CSS để tạo giao diện, và JavaScript để xử lý
+        logic</strong>. Bài viết được trình bày <strong>từng bước</strong>, mỗi khối code đều có
+      <strong>mô tả trước</strong> và <strong>giải thích sau</strong> để bạn dễ theo dõi.
+    </p>
+    <h2>1.Phân tích chức năng</h2>
+    <p>Trước khi code, ta cần xác định:</p>
+    <ul>
+      <li>Người dùng nhập nội dung công việc</li>
+      <li>Nhấn nút <strong>Add</strong> để thêm vào danh sách</li>
+      <li>Mỗi công việc có nút <strong>Delete</strong> để xóa</li>
+    </ul>
+    <h2>2. Tạo cấu trúc HTML</h2>
+    <h3>Mô tả</h3>
+    <p>HTML sẽ tạo:</p>
+    <ul>
+      <li>Một ô input để nhập công việc</li>
+      <li>Một nút thêm công việc</li>
+      <li>Một danh sách <code class="language-html">&lt;ul&gt;</code> để hiển thị các todo</li>
+    </ul>
+    <h3>Code HTML</h3>
+    <pre>
+    <code class="language-html">&lt;!DOCTYPE html&gt;
+        &lt;html lang=&quot;vi&quot;&gt;
+        &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;title&gt;Todo List App&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &lt;div class=&quot;todo-container&quot;&gt;
+        &lt;h1&gt;Todo List&lt;/h1&gt;
+        
+        
+        &lt;div class=&quot;todo-input&quot;&gt;
+        &lt;input type=&quot;text&quot; id=&quot;todoInput&quot; placeholder=&quot;Nhập công việc...&quot;&gt;
+        &lt;button id=&quot;addBtn&quot;&gt;Add&lt;/button&gt;
+        &lt;/div&gt;
+        
+        
+        &lt;ul id=&quot;todoList&quot;&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+        
+        
+        &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;</code>
+    </pre>
+    <h4>Giải thích</h4>
+    <ul>
+      <li><code class="language-html">input#todoInput</code> nơi người dùng nhập công việc</li>
+      <li><code class="language-html">button#addBtn</code> nút thêm todo</li>
+      <li><code class="language-html">ul#todoList</code> danh sách hiển thị các công việc</li>
+      <li>File <b>CSS</b> và <b>JavaScript</b> được tách riêng để dễ quản lý</li>
+    </ul>
+    <h2>3.Tạo giao diện với CSS</h2>
+    <h3>Mô tả</h3>
+    <p>CSS giúp:</p>
+    <ul>
+      <li>Căn giữa ứng dụng</li>
+      <li>Tạo giao diện gọn gàng, dễ nhìn</li>
+      <li>Làm nổi bật nút thêm và nút xóa</li>
+    </ul>
+    <h3>Code CSS <code class="language-css">(style.css)</code></h3>
+    <pre>
+    <code class="language-css">* {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        }
+        
+        
+        body {
+        background: #f4f6f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        }
+        
+        
+        .todo-container {
+        background: #fff;
+        padding: 20px;
+        width: 300px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        
+        .todo-container h1 {
+        text-align: center;
+        }
+        
+        
+        .todo-input {
+        display: flex;
+        gap: 5px;
+        }
+        
+        
+        .todo-input input {
+        flex: 1;
+        padding: 8px;
+        }
+        
+        
+        .todo-input button {
+        padding: 8px 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        }
+        
+        
+        .todo-input button:hover {
+        background: #0056b3;
+        }
+        
+        
+        #todoList {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+        }
+        
+        
+        #todoList li {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        background: #f1f1f1;
+        margin-bottom: 5px;
+        }
+        
+        
+        .delete-btn {
+        background: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        }</code>
+    </pre>
+    <h4>Giải thích</h4>
+    <ul>
+      <li>
+        <code class="language-css">display: flex</code> giúp căn chỉnh input và button cùng hàng
+      </li>
+      <li><code class="language-css">.delete-btn</code> được dùng cho nút xóa từng công việc</li>
+      <li><b>Box shadow</b> và <b>border radius</b> tạo cảm giác hiện đại</li>
+    </ul>
+    <h2>4. Xử lý logic bằng JavaScript</h2>
+    <h3>Mô tả</h3>
+    <p>JavaScript sẽ:</p>
+    <ul>
+      <li>Lắng nghe sự kiện click nút <b>Add</b></li>
+      <li>Tạo phần tử <code class="language-html">&lt;li&gt;</code> mới</li>
+      <li>Gắn nút xóa cho từng todo</li>
+      <li>Xóa todo khi nhấn <strong>Delete</strong></li>
+    </ul>
+    <h3>Code JavaScript <code class="language-js">(script.js)</code></h3>
+    <pre>
+    <code class="language-js">const todoInput = document.getElementById('todoInput');
+        const addBtn = document.getElementById('addBtn');
+        const todoList = document.getElementById('todoList');
+        
+        
+        addBtn.addEventListener('click', addTodo);
+        
+        
+        function addTodo() {
+        const todoText = todoInput.value.trim();
+        
+        
+        if (todoText === '') {
+        alert('Vui lòng nhập công việc');
+        return;
+        }
+        
+        
+        const li = document.createElement('li');
+        li.textContent = todoText;
+        
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.className = 'delete-btn';
+        
+        
+        deleteBtn.addEventListener('click', () => {
+        li.remove();
+        });
+        
+        
+        li.appendChild(deleteBtn);
+        todoList.appendChild(li);
+        
+        
+        todoInput.value = '';
+        }</code>
+    </pre>
+    <h4>Giải thích</h4>
+    <ul>
+      <li><code class="language-js">addEventListener</code>: bắt sự kiện click</li>
+      <li><code class="language-js">createElement</code>: tạo phần tử HTML bằng JavaScript</li>
+      <li><code class="language-js">trim()</code>: loại bỏ khoảng trắng đầu/cuối</li>
+      <li><code class="language-js">li.remove()</code>: xóa công việc khỏi danh sách</li>
+    </ul>
+    <h2>5. Kết quả đạt được</h2>
+    <p>Sau khi hoàn thành, ứng dụng Todo List có thể:</p>
+    <ul>
+      <li>Thêm công việc mới</li>
+      <li>Hiển thị danh sách</li>
+      <li>Xóa từng công việc</li>
+    </ul>
+    <p>Đây là nền tảng tốt để bạn mở rộng thêm:</p>
+    <ul>
+      <li>Đánh dấu hoàn thành</li>
+      <li>Lưu <b>todo</b> bằng <b>LocalStorage</b></li>
+      <li>Chỉnh sửa công việc</li>
+    </ul>
+<b>    <h2>6. Kết luận</h2>
+</b>    <p>Thông qua bài viết này, bạn đã:</p>
+    <ul>
+      <li>Hiểu cách kết hợp <b>HTML</b>, <b>CSS</b> và <b>JavaScript</b></li>
+      <li>Biết cách thao tác <b>DOM</b> cơ bản</li>
+      <li>Xây dựng được một ứng dụng web nhỏ hoàn chỉnh</li>
+    </ul>
+<pre><code class="language-css">&lt;/body&gt;
+        margin-right: 10px;
+    button {
+        padding: 10px;
+    }
+    li {
+        margin: 5px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+&lt;/style&gt;
+</code></pre>
+
+<p>Giải thích: Chúng ta căn giữa trang, đặt font dễ đọc, style cho input, button và các item trong danh sách để trông gọn gàng, dễ nhìn.</p>
+
+<h2>Bước 3: Viết JavaScript để thêm công việc</h2>
+<p>Chúng ta sẽ tạo một function để lấy giá trị từ input, tạo một <code class="language-html">&lt;li&gt;</code> mới và thêm vào danh sách.</p>
+
+<pre><code class="language-js">&lt;script&gt;
+    const addBtn = document.getElementById('add-btn');
+    const input = document.getElementById('todo-input');
+    const list = document.getElementById('todo-list');
+
+    addBtn.addEventListener('click', function() {
+        const todoText = input.value.trim();
+        if(todoText !== '') {
+            const li = document.createElement('li');
+            li.textContent = todoText;
+            list.appendChild(li);
+            input.value = '';
+        }
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p>Giải thích: Khi người dùng bấm nút thêm, chúng ta lấy giá trị trong input. Nếu không rỗng, tạo một thẻ <code class="language-html">&lt;li&gt;</code> mới, gán giá trị và thêm vào <code class="language-html">&lt;ul&gt;</code>. Sau đó xóa input để chuẩn bị nhập công việc tiếp theo.</p>
+
+<h2>Bước 4: Thêm nút xóa cho từng công việc</h2>
+<p>Chúng ta sẽ tạo một nút xóa cho mỗi item để có thể loại bỏ công việc khỏi danh sách.</p>
+
+<pre><code class="language-js">addBtn.addEventListener('click', function() {
+    const todoText = input.value.trim();
+    if(todoText !== '') {
+        const li = document.createElement('li');
+        li.textContent = todoText;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Xóa';
+        deleteBtn.addEventListener('click', function() {
+            list.removeChild(li);
+        });
+
+        li.appendChild(deleteBtn);
+        list.appendChild(li);
+        input.value = '';
+    }
+});</code></pre>
+
+<p>Giải thích: Mỗi khi thêm công việc, chúng ta tạo thêm một nút 'Xóa' bên trong <code class="language-html">&lt;li&gt;</code>. Khi bấm vào nút này, công việc đó sẽ bị xóa khỏi danh sách <code class="language-html">&lt;ul&gt;</code> bằng phương thức <code>removeChild</code>.</p>
+
+<h2>Bước 5: Thêm khả năng thêm công việc khi nhấn Enter</h2>
+<p>Để tiện lợi hơn, chúng ta có thể cho phép người dùng nhấn Enter để thêm công việc.</p>
+
+<pre><code class="language-js">input.addEventListener('keypress', function(e) {
+    if(e.key === 'Enter') {
+        addBtn.click();
+    }
+});</code></pre>
+
+<p>Giải thích: Chúng ta lắng nghe sự kiện <code class="language-js">keypress</code> trên input. Nếu người dùng nhấn Enter, chúng ta kích hoạt click vào nút thêm, giúp thêm công việc mà không cần bấm chuột.</p>
+
+<h2>Kết quả</h2>
+<p>Với các bước trên, bạn đã có một ứng dụng Todo List cơ bản, có thể:</p>
+<ul>
+    <li>Nhập và thêm công việc mới.</li>
+    <li>Hiển thị danh sách các công việc.</li>
+    <li>Xóa công việc bất kỳ trong danh sách.</li>
+</ul>
+
+<p>Bạn có thể mở rộng ứng dụng bằng cách lưu công việc vào <code>localStorage</code> để giữ lại khi tải lại trang, thêm chỉnh sửa, đánh dấu hoàn thành, hoặc sắp xếp các công việc.</p>
+</body>
+</html>
